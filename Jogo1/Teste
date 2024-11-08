@@ -95,3 +95,23 @@ public class App{
     }
 }
 
+Arqueiro:   
+
+public void atirarFlecha(Personagem oponente) {
+        oponente.Vida -= this.Ataque;
+        System.out.println(this.Nome + " atirou uma flecha no " + oponente.Nome + " e causou " + this.Ataque * 2 + " de dano.");
+    }
+
+Guerreiro:
+
+    public void atingirEspada(Personagem oponente) {
+        oponente.Vida -= this.Ataque;
+        System.out.println(this.Nome + " desferiu uma espadada no " + oponente.Nome + " e causou " + (this.Ataque * 3) + " de dano.");
+    }
+
+Mago:
+
+    public void lançarFeitico(Personagem oponente) {
+        oponente.Vida -= this.Ataque ;
+        System.out.println(this.Nome + " lançou um feitiço no " + oponente.Nome + " e causou " + (this.Ataque * 2) + " de dano.");
+    }
