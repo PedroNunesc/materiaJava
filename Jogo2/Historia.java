@@ -112,7 +112,11 @@ public String HistoriainiF(){
 
 public String ContinuaIniF(){
 String continuaF =
-        "aaaaaa";
+                  "Parabens voce conseguio derrotar o lider do pelotao inimigo! "  + separador +
+                  "Apos isso o seu pais esta com muito mais tropas, e com uma vantagem muito grande conseguem derrotar a maioria dos inimigos "  + separador +
+                  "Os inimigos que sobraram foram rendidos entao o pais inimigo declara a derrota, lancando a bandeira branca e acabando com a guerra! "  + separador +
+                  "Voce volta para o seu pais, e e declarado um dos herois do seu pais, por tudo que voce conseguio na guerra! "  + separador +
+                  "Agora o que resta pra voce e esperar a proxima guerra! ";
 
 return continuaF;
         }
