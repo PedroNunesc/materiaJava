@@ -17,13 +17,31 @@ public class InterfaceGrafica extends javax.swing.JFrame {
     /**
      * Creates new form Interfax
      */
+Box box = new Box();
+Mochila mochila = new Mochila();
     public InterfaceGrafica() {
         initComponents();
         modeloLista = new DefaultListModel<>();
 listaItens.setModel(modeloLista);
 
-Box box = new Box();
-box.add(new Pokemon("Boulbassar", "Grass, Poison", 9));
+// Adicionando os pokémons à box.Boxpokemon
+        box.Boxpokemon.add(new Pokemon("Boulbassar", "Grass and Poison", 9));
+        box.Boxpokemon.add(new Pokemon("Charmander", "Fire", 9));
+        box.Boxpokemon.add(new Pokemon("Squirtle", "Water", 9));
+        box.Boxpokemon.add(new Pokemon("Chikorita", "Grass", 10));
+        box.Boxpokemon.add(new Pokemon("Cyndaquil", "Water", 10));
+        box.Boxpokemon.add(new Pokemon("Totodile", "Water", 10));
+        box.Boxpokemon.add(new Pokemon("Treecko", "Grass", 11));
+        box.Boxpokemon.add(new Pokemon("Torchic", "Fire", 11));
+        box.Boxpokemon.add(new Pokemon("Mudkip", "Water", 11));
+        box.Boxpokemon.add(new Pokemon("Turtwig", "Grass", 12));
+        box.Boxpokemon.add(new Pokemon("Piplup", "Fire", 12));
+        box.Boxpokemon.add(new Pokemon("Chimchar", "Water", 12));
+
+        for (Pokemon pokemon : box.Boxpokemon) {
+            modeloLista.addElement(pokemon.mostrarPokemon());
+        }
+        
     }
 
     /**
@@ -39,12 +57,16 @@ box.add(new Pokemon("Boulbassar", "Grass, Poison", 9));
         listaItens = new javax.swing.JList<>();
         btnAdicionar = new javax.swing.JButton();
         btnRemover = new javax.swing.JButton();
-        txtItem = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listaItens2 = new javax.swing.JList<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jScrollPane1.setViewportView(listaItens);
 
+        btnAdicionar.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnAdicionar.setText("Add");
         btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,6 +74,7 @@ box.add(new Pokemon("Boulbassar", "Grass, Poison", 9));
             }
         });
 
+        btnRemover.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnRemover.setText("Remove");
         btnRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,52 +82,76 @@ box.add(new Pokemon("Boulbassar", "Grass, Poison", 9));
             }
         });
 
-        txtItem.setText("jTextField1");
+        jScrollPane2.setViewportView(listaItens2);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jLabel1.setText("MOCHILA");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("BOX");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
                         .addComponent(btnAdicionar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnRemover)))
-                .addContainerGap(208, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRemover)
+                        .addGap(72, 72, 72))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(271, 271, 271)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 276, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(2, 2, 2)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdicionar)
                     .addComponent(btnRemover))
-                .addGap(18, 18, 18)
-                .addComponent(txtItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 72, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-String novoItem = txtItem.getText().trim();
-    if (!novoItem.isEmpty()) {
-        modeloLista.addElement(novoItem);
-        txtItem.setText(""); // Limpa o campo
-    }        // TODO add your handling code here:
+int index = listaItens.getSelectedIndex();
+    if (index != -1) { // Verifica se algo foi selecionado
+        box.Boxpokemon.remove(index);
+    }      
+Pokemon pokemon = box.Boxpokemon.get(index);
+mochila.MochilaPokemon.add(pokemon);
+box.Boxpokemon.remove(pokemon);// TODO add your handling code here:
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-int index = listaItens.getSelectedIndex();
+int index = listaItens2.getSelectedIndex();
     if (index != -1) { // Verifica se algo foi selecionado
-        modeloLista.remove(index);
+        Mochila.MochilaPokemon.remove(index);
     }        // TODO add your handling code here:
+ Pokemon pokemon =  Mochila.MochilaPokemon.get(index);
+ box.Boxpokemon.add(pokemon);
+ mochila.MochilaPokemon.remove(pokemon);
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     /**
@@ -148,8 +195,11 @@ int index = listaItens.getSelectedIndex();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnRemover;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> listaItens;
-    private javax.swing.JTextField txtItem;
+    private javax.swing.JList<String> listaItens2;
     // End of variables declaration//GEN-END:variables
 }

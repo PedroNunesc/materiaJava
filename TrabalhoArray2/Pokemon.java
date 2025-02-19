@@ -3,14 +3,20 @@
  */
 package TrabalhoArray2;
 
-public class Pokemon {
-    public String nome;
-    public String tipo;
-    public int nivel;
-    
-     public Pokemon(String nome, String tipo, int nivel) {
-        this.nome = nome;
-        this.tipo = tipo;
-        this.nivel = nivel;
-}
+class Pokemon {
+    private String name;
+    private String type;
+    private int level;
+
+    // Construtor
+    public Pokemon(String name, String type, int level) {
+        this.name = name;
+        this.type = type;
+        this.level = level;
+    }
+
+    // Adiciona um metodo para mostrar o pokemon
+    public String mostrarPokemon() {
+        return "Pokemon: " +name+ ", Type: " +type+ ", level: " +level+ ".";
+    }
 }
