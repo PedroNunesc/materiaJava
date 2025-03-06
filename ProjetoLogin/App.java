@@ -3,12 +3,15 @@
  */
 package ProjetoLogin;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import java.sql.Connection;
 
+public class App {
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
-    }
+        ConexaoTabelaUsuarios conexaoSQLite = new ConexaoTabelaUsuarios();
+        Connection conexao = conexaoSQLite.conectar();
+        
+        
+        
+        // Criar tabela
+       CriarTabela.criarTabelaUsuarios(conexao);
 }
