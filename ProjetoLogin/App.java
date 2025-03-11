@@ -10,8 +10,16 @@ public class App {
         ConexaoTabelaUsuarios conexaoSQLite = new ConexaoTabelaUsuarios();
         Connection conexao = conexaoSQLite.conectar();
         
-        
-        
         // Criar tabela
-       CriarTabela.criarTabelaUsuarios(conexao);
+       CriarTabela ct = new CriarTabela();
+       ct.criarTabelaUsuarios(conexao);
+       
+       InserirUsuario.inserirUsuario(conexao, "Leo", "Senha" );
+       
+      
+       
+       
+    }
+        
+        
 }

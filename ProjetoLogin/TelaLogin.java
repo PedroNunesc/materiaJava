@@ -2,23 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.example.ProjetoLogin;
-
+package ProjetoLogin;
 
 import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Usuario
+ * @author Aluno
  */
 public class TelaLogin extends javax.swing.JFrame {
-    
+
     ConexaoTabelaUsuarios conexaoSQLite = new ConexaoTabelaUsuarios();
     Connection conexao = conexaoSQLite.conectar();
+    
+    
     /**
      * Creates new form TelaLogin
      */
     public TelaLogin() {
         initComponents();
+       CriarTabela.criarTabelaUsuarios(conexao);
     }
 
     /**
@@ -30,30 +34,32 @@ public class TelaLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        txtSenha = new javax.swing.JTextField();
-        txtUsuario = new javax.swing.JTextField();
+        usuario = new javax.swing.JLabel();
+        campoUsuario = new javax.swing.JTextField();
+        senha = new javax.swing.JLabel();
+        campoSenha = new javax.swing.JPasswordField();
+        botaoLogin = new javax.swing.JButton();
+        botaoRegistrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Nome");
+        usuario.setText("Usuario");
 
-        jLabel2.setText("Senha");
+        senha.setText("Senha");
 
-        jButton1.setText("Registrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        campoSenha.setText("jPasswordField1");
+
+        botaoLogin.setText("Login");
+        botaoLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botaoLoginActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Entrar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botaoRegistrar.setText("Registrar");
+        botaoRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botaoRegistrarActionPerformed(evt);
             }
         });
 
@@ -62,58 +68,68 @@ public class TelaLogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(136, 136, 136)
+                .addGap(118, 118, 118)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                        .addComponent(txtSenha)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)))
-                .addContainerGap(124, Short.MAX_VALUE))
+                    .addComponent(senha, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                    .addComponent(usuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(campoUsuario)
+                    .addComponent(campoSenha)
+                    .addComponent(botaoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jButton2)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(usuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(senha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botaoLogin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botaoRegistrar)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    String armazenaUsuario = txtUsuario.getText();
-    String armazenaSenha = txtSenha.getText();
+    private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
+        String usuario = campoUsuario.getText();
+        String senha = new String(campoSenha.getPassword());
 
-String UsuarioProcurado = armazenaUsuario;
-String SenhaProcurada = armazenaSenha;
-    }//GEN-LAST:event_jButton2ActionPerformed
+   
+    if (Login.validarLogin(usuario, senha)) {
+        JOptionPane.showMessageDialog(this, "Login bem-sucedido!");
+        
+        String[] user = BuscarUsuario.buscarUsuario(conexao, usuario);
+        
+        
+        // Aqui você pode abrir outra tela, por exemplo:
+        new TelaUsuario(user[0],user[1],user[2]).setVisible(true);
+        this.dispose(); // Fecha a tela de login
+    } else {
+        JOptionPane.showMessageDialog(this, "Usuário ou senha incorretos!");
+    }
+    }//GEN-LAST:event_botaoLoginActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-if (txtSenha == null){
-System.out.println("Erro, verifique se os dois campos foram preenchidos corretamente!");
-} else {
-if (txtUsuario == null){
-System.out.println("Erro, verifique se os dois campos foram preenchidos corretamente!");
-} else {
-    String armazenaUsuario = txtUsuario.getText();
-    String armazenaSenha = txtSenha.getText();
-InserirUsuario.inserirUsuario(conexao, armazenaUsuario, armazenaSenha);}
-}        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void botaoRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRegistrarActionPerformed
+       String usuario = campoUsuario.getText();
+       String senha = new String(campoSenha.getPassword());
+
+        boolean sucesso = InserirUsuario.inserirUsuario(conexao, usuario, senha);
+
+        if (sucesso == true) {
+            JOptionPane.showMessageDialog(this, "Usuário registrado com sucesso!", "Registro", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuário já existe no banco de dados!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_botaoRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,11 +167,11 @@ InserirUsuario.inserirUsuario(conexao, armazenaUsuario, armazenaSenha);}
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txtSenha;
-    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JButton botaoLogin;
+    private javax.swing.JButton botaoRegistrar;
+    private javax.swing.JPasswordField campoSenha;
+    private javax.swing.JTextField campoUsuario;
+    private javax.swing.JLabel senha;
+    private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 }

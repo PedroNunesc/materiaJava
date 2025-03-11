@@ -6,38 +6,45 @@ package ProjetoLogin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
  * @author PEDROHENRIQUENUNESCA
  */
-public class InserirUsuario {  
-
-    public static void inserirUsuario(Connection conexao, String usuario, String senha) {
-
-        // A string sql contém o comando SQL que será executado no banco de dados. 
-        // O comando INSERT INTO vai inserir um novo registro na tabela "usuarios" com os valores de "nome" e "email".
-        String sql = "INSERT INTO usuarios (usuario, senha) VALUES (?, ?)"; 
+public class InserirUsuario {
+    // Método para inserir um usuário apenas se ele não existir no banco de dados
+    public static boolean inserirUsuario(Connection conexao, String nome, String senha) {
+        // Consulta SQL para verificar se o usuário já existe no banco de dados
+        String sqlCheck = "SELECT * FROM usuarios WHERE nome = ?";
+        // Comando SQL para inserir um novo usuário com nome e senha
+        String sqlInsert = "INSERT INTO usuarios (nome, senha) VALUES (?, ?)";
         
-        // O bloco try é utilizado para garantir que o recurso (PreparedStatement) 
-        // seja fechado automaticamente após o uso.
-        try (PreparedStatement pstmt = conexao.prepareStatement(sql)) {
+        try (PreparedStatement checkStmt = conexao.prepareStatement(sqlCheck)) {
+            // Define o valor do parâmetro na query SQL
+            checkStmt.setString(1, nome);
+            ResultSet rs = checkStmt.executeQuery();
             
-            // O método setString substitui os "?" no comando SQL pelos valores passados como parâmetros para o método.
-            // O primeiro parâmetro é a posição do "?", e o segundo é o valor a ser atribuído.
-            pstmt.setString(1, usuario); // Substitui o primeiro ? por 'nome'
-            pstmt.setString(2, senha); // Substitui o segundo ? por 'email'
-
-            // O método executeUpdate executa o comando SQL no banco de dados. 
-            // No caso, ele insere o usuário na tabela.
-            pstmt.executeUpdate();
-            
-            System.out.println("Usuário inserido com sucesso!");
-
-        // O bloco catch captura qualquer exceção que ocorra durante a execução do código dentro do try.
-        // Se algo der errado (por exemplo, erro de conexão ou comando SQL inválido), a mensagem de erro será exibida.
+            // Se existir um resultado, significa que o usuário já está cadastrado
+            if (rs.next()) {
+                System.out.println("Usuário já existe no banco de dados.");
+                return false; // Encerra a execução do método sem inserir o usuário
+            }
+        
+            try (PreparedStatement insertStmt = conexao.prepareStatement(sqlInsert)) {
+                // Define os valores dos parâmetros na query SQL
+                insertStmt.setString(1, nome);  // Substitui o primeiro ? pelo nome do usuário
+                insertStmt.setString(2, senha); // Substitui o segundo ? pela senha do usuário
+                
+                // Executa a inserção no banco de dados
+                insertStmt.executeUpdate();
+                System.out.println("Usuário inserido com sucesso!");
+                return true; // Usuário inserido com sucesso
+            } 
         } catch (Exception e) {
-            System.out.println("Erro ao inserir usuário: " + e.getMessage());  // Exibe a mensagem de erro.
+            // Captura e exibe qualquer erro ocorrido durante a execução
+            System.out.println("Erro ao inserir usuário: " + e.getMessage());  
         }
+        return false;
     }
- }
+}

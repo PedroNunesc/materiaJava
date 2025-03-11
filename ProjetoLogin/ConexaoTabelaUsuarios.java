@@ -12,10 +12,9 @@ import java.sql.SQLException;
  *
  * @author PEDROHENRIQUENUNESCA
  */
-// Método para conectar ao banco de dados
-public class ConexaoTabelaUsuarios { // Declaração da classe que gerencia a conexão com o SQLite
-    
-    // Método para conectar ao banco de dados
+
+public class ConexaoTabelaUsuarios {
+     // Método para conectar ao banco de dados
     public Connection conectar() {
         Connection conexao = null; // Declara uma variável para armazenar a conexão
         String url = "jdbc:sqlite:usuariosNovo.db"; // Define o caminho do banco de dados SQLite
@@ -33,7 +32,7 @@ public class ConexaoTabelaUsuarios { // Declaração da classe que gerencia a co
     }
 
     // Método para fechar a conexão com o banco de dados
-    public  void desconectar(Connection conexao) {
+    public void desconectar(Connection conexao) {
         try {
             // Verifica se a conexão não é nula (ou seja, se está aberta)
             if (conexao != null) {
